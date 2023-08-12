@@ -1,109 +1,43 @@
-// selectors
+const todos = [];
+
+// selecting
+
 const todoInput = document.querySelector(".todo-input");
-const todoButton = document.querySelector(".todo-button");
+const todoForm = document.querySelector(".todo-form");
 const todoList = document.querySelector(".todolist");
-const filterOption = document.querySelector(".filter-todos");
+
+// events
+
+todoForm.addEventListener("submit", addNewTodo);
 
 // functions
-function addTodo(e) {
+
+function addNewTodo(e) {
   e.preventDefault();
 
-  const todoDiv = document.createElement("div");
-  todoDiv.classList.add("todo");
+  const newTodo = {
+    id: Date.now(),
+    createdAt: new Date().toISOString(),
+    title: todoInput.value,
+    isCompleted: false,
+  };
 
-  const newTodo = `<li>${todoInput.value}</li>
-  <span><i class="far fa-check-square"></i></span>
-  <span><i class="far fa-trash-alt"></i></span>`;
+  todos.push(newTodo);
 
-  todoDiv.innerHTML = newTodo;
-  todoList.appendChild(todoDiv);
-
-  saveLocalTodos(todoInput.value);
-  todoInput.value = "";
-}
-
-function checkRemove(e) {
-  const classList = [...e.target.classList];
-  console.log(classList);
-
-  const item = e.target;
-  const todo = item.parentElement.parentElement;
-
-  if (classList[1] === "fa-check-square") {
-    todo.classList.toggle("completed");
-  } else if (classList[1] === "fa-trash-alt") {
-    removeLocalTodos(todo);
-    todo.remove();
-  }
-}
-
-function filterTodos(event) {
-  const todos = [...todoList.childNodes];
+  // create todos on DOM
+  let result = "";
 
   todos.forEach((todo) => {
-    switch (event.target.value) {
-      case "all":
-        todo.style.display = "flex";
-        break;
-      case "completed":
-        if (todo.classList.contains("completed")) {
-          todo.style.display = "flex";
-        } else {
-          todo.style.display = "none";
-        }
-        break;
-      case "uncompleted":
-        if (!todo.classList.contains("completed")) {
-          todo.style.display = "flex";
-        } else {
-          todo.style.display = "none";
-        }
-        break;
-    }
+    result += `<div class="todo">
+    <li>${todo.title}</li>
+    <span class="todo__createdAt">${new Date(todo.createdAt).toLocaleDateString(
+      "fa-IR"
+    )}</span>
+    <span data-todo-id=${todo.id}><i class="far fa-check-square"></i></span>
+    <span data-todo-id=${todo.id}><i class="far fa-trash-alt"></i></span>
+    </div>`;
   });
+
+  todoList.innerHTML = result;
+  todoInput.value = "";
 }
-
-function saveLocalTodos(todo) {
-  let savedTodos = localStorage.getItem("todos")
-    ? JSON.parse(localStorage.getItem("todos"))
-    : [];
-  savedTodos.push(todo);
-  localStorage.setItem("todos", JSON.stringify(savedTodos));
-}
-
-function getLocalTodos() {
-  let savedTodos = localStorage.getItem("todos")
-    ? JSON.parse(localStorage.getItem("todos"))
-    : [];
-
-  savedTodos.forEach((todo) => {
-    const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo");
-
-    const newTodo = `<li>${todo}</li>
-  <span><i class="far fa-check-square"></i></span>
-  <span><i class="far fa-trash-alt"></i></span>`;
-
-    todoDiv.innerHTML = newTodo;
-    todoList.appendChild(todoDiv);
-  });
-}
-
-function removeLocalTodos(todo) {
-  console.log(todo.children[0].innerText);
-
-  let savedTodos = localStorage.getItem("todos")
-    ? JSON.parse(localStorage.getItem("todos"))
-    : [];
-
-  const filteredTodos = savedTodos.filter(
-    (t) => t !== todo.children[0].innerText
-  );
-  localStorage.setItem("todos", JSON.stringify(filteredTodos));
-}
-
-// event listeners
-todoButton.addEventListener("click", addTodo);
-todoList.addEventListener("click", checkRemove);
-filterOption.addEventListener("click", filterTodos);
-document.addEventListener("DOMContentLoaded", getLocalTodos);

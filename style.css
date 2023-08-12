@@ -98,6 +98,9 @@ form button {
 .fa-check-square {
   color: var(--primaryColor);
 }
+.todo__createdAt {
+  color: var(--primaryColor);
+}
 .completed {
   text-decoration: line-through;
   opacity: 0.5;
