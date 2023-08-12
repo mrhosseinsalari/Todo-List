@@ -131,6 +131,9 @@ select {
   color: var(--primaryColor);
   pointer-events: none;
 }
+span > i {
+  pointer-events: none;
+}
 
 @media screen and (max-width: 590px) {
   .form-container {
