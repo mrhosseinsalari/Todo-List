@@ -1,4 +1,4 @@
-let todos = [];
+// let todos = [];
 let filterValue = "all";
 
 // selecting
@@ -9,9 +9,15 @@ const selectFilter = document.querySelector(".filter-todos");
 
 // events
 todoForm.addEventListener("submit", addNewTodo);
+
 selectFilter.addEventListener("change", (e) => {
   filterValue = e.target.value;
   filterTodos();
+});
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  const todos = getAllTodos();
+  createTodos(todos);
 });
 
 // functions
@@ -54,7 +60,8 @@ function addNewTodo(e) {
     isCompleted: false,
   };
 
-  todos.push(newTodo);
+  // todos.push(newTodo);
+  saveTodo(newTodo);
 
   // create todos on DOM
   filterTodos();
@@ -62,6 +69,8 @@ function addNewTodo(e) {
 }
 
 function filterTodos() {
+  const todos = getAllTodos();
+
   switch (filterValue) {
     case "all": {
       createTodos(todos);
@@ -83,14 +92,36 @@ function filterTodos() {
 }
 
 function removeTodo(e) {
+  let todos = getAllTodos();
   const todoId = Number(e.target.dataset.todoId);
   todos = todos.filter((todo) => todo.id !== todoId);
+  saveAllTodos(todos);
   filterTodos();
 }
 
 function checkTodo(e) {
+  const todos = getAllTodos();
   const todoId = Number(e.target.dataset.todoId);
   const todo = todos.find((todo) => todo.id === todoId);
   todo.isCompleted = !todo.isCompleted;
+  saveAllTodos(todos);
   filterTodos();
+}
+
+// localStorage ==> web API
+function getAllTodos() {
+  const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  return savedTodos;
+}
+
+function saveTodo(todo) {
+  const savedTodos = getAllTodos();
+  savedTodos.push(todo);
+
+  localStorage.setItem("todos", JSON.stringify(savedTodos));
+  return savedTodos;
+}
+
+function saveAllTodos(todos) {
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
