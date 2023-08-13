@@ -102,8 +102,10 @@ form button {
   color: var(--primaryColor);
 }
 .completed {
-  text-decoration: line-through;
   opacity: 0.5;
+}
+.completed > li {
+  text-decoration: line-through;
 }
 select {
   appearance: none;
