@@ -28,13 +28,16 @@ function createTodos(todos) {
     result += `<li class="todo ${
       todo.isCompleted ? "completed" : "uncompleted"
     }">
+    <span class="todo__check" data-todo-id=${
+      todo.id
+    }><i class="far fa-check-square"></i></span>
     <p>${todo.title}</p>
     <span class="todo__createdAt">${new Date(todo.createdAt).toLocaleDateString(
       "fa-IR"
     )}</span>
-    <span class="todo__check" data-todo-id=${
+    <span class="todo__edit" data-todo-id=${
       todo.id
-    }><i class="far fa-check-square"></i></span>
+    }><i class="fas fa-edit"></i></span>
     <span class="todo__remove" data-todo-id=${
       todo.id
     }><i class="far fa-trash-alt"></i></span>

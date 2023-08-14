@@ -9,15 +9,19 @@
 }
 
 :root {
-  --primaryColor: #6d28d9;
-  --secondaryColor: #ede9fe;
+  --primaryColor: #3b71ca;
+  --secondaryColor: #e3ebf7;
   --mainWhite: #fff;
   --mainBlack: #222;
-  --mainGrey: #7c7c7c;
+  --mainGrey: #757575;
   --mainSpacing: 0.1rem;
   --mainTransition: all 0.3s linear;
   --mainRed: #db2777;
-  --bodyColor: #f6f6f6;
+  --bodyColor: #eff1f2;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 body {
@@ -34,6 +38,13 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 4rem;
+  margin: 1.6rem 0 2.4rem;
+  padding-bottom: 1.6rem;
+  color: var(--primaryColor);
+}
+header p {
+  padding-right: 1.2rem;
 }
 .container {
   display: flex;
@@ -42,15 +53,20 @@ header {
 }
 .form-container {
   display: flex;
+  padding-bottom: 0.8rem;
 }
 .todolist {
   width: 25rem;
 }
 form {
-  width: 25rem;
+  width: 80rem;
   background-color: white;
   display: flex;
   justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07),
+    0 10px 20px -2px rgba(0, 0, 0, 0.04);
 }
 form input {
   flex: 1;
@@ -60,24 +76,87 @@ form button {
   border: none;
   outline: none;
   background-color: var(--mainWhite);
-  font-size: 1rem;
+  font-size: 1.6rem;
   padding: 0.5rem;
 }
 .todo-button {
-  color: var(--primaryColor);
+  color: var(--mainWhite);
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  font-size: 1.3rem;
+  background-color: var(--primaryColor);
+  padding: 1rem 2.4rem 0.8rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 9px -4px #3b71ca;
+  transition: all 0.2s ease-in-out;
 }
 .todo-button:hover {
-  background-color: var(--primaryColor);
-  color: var(--mainWhite);
+  background-color: #386bc0;
+  box-shadow: 0 8px 9px -4px rgba(59, 113, 202, 0.3),
+    0 4px 18px 0 rgba(59, 113, 202, 0.2);
+}
+hr {
+  margin: 2.4rem 0;
+  opacity: 0.4;
+}
+.select-options {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #4f4f4f;
+  font-size: 1.6rem;
+  margin-bottom: 2.4rem;
+  padding: 0.8rem 0 1.6rem;
+}
+#filterTodos,
+#sortTodos {
+  display: flex;
+  align-items: center;
+}
+#sortTodos {
+  margin-right: 2.4rem;
+}
+.select-text {
+  color: var(--mainGrey);
+  font-size: 1.4rem;
+  margin-left: 0.8rem;
+}
+.select {
+  margin-left: 1rem;
+  width: 19rem;
+  position: relative;
+}
+select {
+  appearance: none;
+  border: none;
+  outline: none;
+  color: var(--primaryColor);
+  width: 100%;
+  padding: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  color: var(--primaryColor);
+  pointer-events: none;
+}
+.todolist {
+  padding-bottom: 5rem;
 }
 .todo {
   background-color: var(--secondaryColor);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.7rem 0;
+  width: 80rem;
+  font-size: 2rem;
+  padding: 0.4rem 1.6rem;
+  margin: 1.2rem 0;
   transition: all 0.3s ease-in-out;
 }
 .todo p {
@@ -86,10 +165,12 @@ form button {
   color: var(--primaryColor);
   font-weight: bold;
 }
+.todo__check {
+  padding: 0.4rem 0 0.4rem 1.6rem !important;
+}
 .todo span {
   display: block;
-  font-size: 1rem;
-  padding: 0.5rem;
+  padding: 1rem;
   cursor: pointer;
 }
 .fa-trash-alt {
@@ -101,37 +182,14 @@ form button {
 .todo__createdAt {
   color: var(--primaryColor);
 }
+.todo__edit {
+  color: #e4a11b;
+}
 .completed {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 .completed > p {
   text-decoration: line-through;
-}
-select {
-  appearance: none;
-  border: none;
-  outline: none;
-  width: 100%;
-  padding: 1rem;
-  background-color: #fff;
-  color: var(--primaryColor);
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-}
-.select {
-  margin-left: 1rem;
-  width: 10rem;
-  position: relative;
-}
-.select::after {
-  content: "\25BC";
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1rem;
-  color: var(--primaryColor);
-  pointer-events: none;
 }
 span > i {
   pointer-events: none;

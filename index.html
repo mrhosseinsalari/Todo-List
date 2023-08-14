@@ -14,26 +14,40 @@
     />
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
-  <body>
+  <body dir="rtl">
     <header>
-      <h1>To Do List</h1>
+      <i class="fas fa-check-square"></i>
+      <p>فهرست کارهای من</p>
     </header>
     <section class="container">
       <section class="form-container">
         <form class="todo-form">
-          <input type="text" class="todo-input" />
-          <button class="todo-button" type="submit">
-            <i class="fa-solid fa-circle-plus"></i>
-          </button>
+          <input type="text" class="todo-input" placeholder="اضافه کن ..." />
+          <button class="todo-button" type="submit">ایجاد</button>
         </form>
-        <div class="select">
-          <select class="filter-todos" name="todos">
-            <option value="all">all</option>
-            <option value="completed">completed</option>
-            <option value="uncompleted">uncompleted</option>
-          </select>
-        </div>
       </section>
+      <hr />
+      <div class="select-options">
+        <div id="filterTodos">
+          <p class="select-text">فیلتر بر اساس</p>
+          <div class="select">
+            <select class="filter-todos" name="todos">
+              <option value="all">همه</option>
+              <option value="completed">تکمیل شده</option>
+              <option value="uncompleted">تکمیل نشده</option>
+            </select>
+          </div>
+        </div>
+        <div id="sortTodos">
+          <p class="select-text">مرتب سازی بر اساس</p>
+          <div class="select">
+            <select class="sort-todos" name="todos">
+              <option value="oldest">قدیمی ترین</option>
+              <option value="newest">جدید ترین</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <ul class="todolist"></ul>
     </section>
 
