@@ -1,5 +1,7 @@
 // let todos = [];
 let filterValue = "all";
+let dateValue = "";
+
 jalaliDatepicker.startWatch();
 
 // selecting
@@ -7,12 +9,18 @@ const todoInput = document.querySelector(".todo-input");
 const todoForm = document.querySelector(".todo-form");
 const todoList = document.querySelector(".todolist");
 const selectFilter = document.querySelector(".filter-todos");
+const dateInput = document.querySelector(".date-input");
 
 // events
 todoForm.addEventListener("submit", addNewTodo);
 
 selectFilter.addEventListener("change", (e) => {
   filterValue = e.target.value;
+  filterTodos();
+});
+
+dateInput.addEventListener("change", (e) => {
+  dateValue = e.target.value;
   filterTodos();
 });
 
@@ -77,21 +85,43 @@ function filterTodos() {
 
   switch (filterValue) {
     case "all": {
-      createTodos(todos);
+      filterTodosByDate(todos);
       break;
     }
 
     case "completed": {
       const filteredTodos = todos.filter((todo) => todo.isCompleted);
-      createTodos(filteredTodos);
+      filterTodosByDate(filteredTodos);
       break;
     }
 
     case "uncompleted": {
       const filteredTodos = todos.filter((todo) => !todo.isCompleted);
-      createTodos(filteredTodos);
+      filterTodosByDate(filteredTodos);
       break;
     }
+  }
+}
+
+function filterTodosByDate(todos) {
+  if (dateValue !== "") {
+    const dateSplitted = dateValue.split("/");
+    const [year, month, day] = dateSplitted.map((number) => Number(number));
+
+    const convertedDate = farvardin
+      .solarToGregorian(year, month, day)
+      .join("-");
+
+    const selectedDate = new Date(convertedDate).toLocaleDateString();
+
+    const filteredTodos = todos.filter((todo) => {
+      const todoCreatedDate = new Date(todo.createdAt).toLocaleDateString();
+      return todoCreatedDate === selectedDate;
+    });
+
+    createTodos(filteredTodos);
+  } else {
+    createTodos(todos);
   }
 }
 
