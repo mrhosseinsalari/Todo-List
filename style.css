@@ -14,8 +14,6 @@
   --mainWhite: #fff;
   --mainBlack: #222;
   --mainGrey: #757575;
-  --mainSpacing: 0.1rem;
-  --mainTransition: all 0.3s linear;
   --mainRed: #db2777;
   --bodyColor: #eff1f2;
 }
@@ -23,7 +21,6 @@
 html {
   font-size: 62.5%;
 }
-
 body {
   font-family: "iranyekan";
   color: var(--mainBlack);
@@ -32,7 +29,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
 header {
   min-height: 20vh;
   display: flex;
@@ -54,9 +50,6 @@ header p {
 .form-container {
   display: flex;
   padding-bottom: 0.8rem;
-}
-.todolist {
-  width: 25rem;
 }
 form {
   width: 80rem;
@@ -125,7 +118,8 @@ hr {
   width: 19rem;
   position: relative;
 }
-select {
+select,
+input[data-jdp] {
   appearance: none;
   border: none;
   outline: none;
@@ -135,6 +129,9 @@ select {
   background-color: #fff;
   cursor: pointer;
   font-weight: bold;
+}
+input[data-jdp]::placeholder {
+  color: var(--primaryColor);
 }
 .select::after {
   content: "\25BC";
@@ -170,15 +167,16 @@ select {
 }
 .todo span {
   display: block;
-  padding: 1rem;
+  font-size: 1.8rem;
+  padding: 0.8rem;
+}
+.todo span:not(:nth-child(3)) {
   cursor: pointer;
 }
 .fa-trash-alt {
   color: var(--mainRed);
 }
-.fa-check-square {
-  color: var(--primaryColor);
-}
+.fa-check-square,
 .todo__createdAt {
   color: var(--primaryColor);
 }
@@ -193,26 +191,4 @@ select {
 }
 span > i {
   pointer-events: none;
-}
-
-@media screen and (max-width: 590px) {
-  .form-container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  form {
-    width: 18rem;
-  }
-  .select {
-    margin-top: 1rem;
-  }
-  select,
-  .select::after {
-    padding: 0.5rem;
-  }
-  .todo {
-    width: 300px;
-    margin: 0.7rem auto;
-  }
 }

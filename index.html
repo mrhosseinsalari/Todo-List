@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To do list</title>
+    <title>Todo List</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -12,12 +12,16 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css"
+    />
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body dir="rtl">
     <header>
       <i class="fas fa-check-square"></i>
-      <p>فهرست کارهای من</p>
+      <p>لیست کارهای روزانه</p>
     </header>
     <section class="container">
       <section class="form-container">
@@ -29,7 +33,7 @@
       <hr />
       <div class="select-options">
         <div id="filterTodos">
-          <p class="select-text">فیلتر بر اساس</p>
+          <p class="select-text">دسته بندی</p>
           <div class="select">
             <select class="filter-todos" name="todos">
               <option value="all">همه</option>
@@ -39,18 +43,19 @@
           </div>
         </div>
         <div id="sortTodos">
-          <p class="select-text">مرتب سازی بر اساس</p>
+          <p class="select-text">تاریخ</p>
           <div class="select">
-            <select class="sort-todos" name="todos">
-              <option value="oldest">قدیمی ترین</option>
-              <option value="newest">جدید ترین</option>
-            </select>
+            <input data-jdp class="date" placeholder="انتخاب کنید" />
           </div>
         </div>
       </div>
       <ul class="todolist"></ul>
     </section>
 
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"
+    ></script>
     <script src="index.js"></script>
   </body>
 </html>

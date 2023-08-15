@@ -1,5 +1,6 @@
 // let todos = [];
 let filterValue = "all";
+jalaliDatepicker.startWatch();
 
 // selecting
 const todoInput = document.querySelector(".todo-input");
