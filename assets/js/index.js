@@ -10,9 +10,13 @@ const todoForm = document.querySelector(".todo-form");
 const todoList = document.querySelector(".todolist");
 const selectFilter = document.querySelector(".filter-todos");
 const dateInput = document.querySelector(".date-input");
+
 const backDrop = document.querySelector(".backdrop");
 const editModal = document.querySelector(".edit-modal");
 const closeModal = document.querySelector(".close-modal");
+
+const editTodoInput = document.querySelector(".edit-input");
+const editTodoForm = document.querySelector(".edit-form");
 
 // events
 document.addEventListener("DOMContentLoaded", (e) => {
@@ -151,9 +155,24 @@ function checkTodo(e) {
   filterTodos();
 }
 
-function showEditModal() {
+function showEditModal(e) {
   backDrop.classList.add("d-block");
   editModal.classList.add("show-modal");
+
+  const todos = getAllTodos();
+  const todoId = Number(e.target.dataset.todoId);
+  const todo = todos.find((todo) => todo.id === todoId);
+  editTodoInput.value = todo.title;
+
+  editTodoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    todo.title = editTodoInput.value;
+    closeEditModal();
+
+    saveAllTodos(todos);
+    filterTodos();
+  });
 }
 
 function closeEditModal() {
