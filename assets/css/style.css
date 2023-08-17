@@ -29,6 +29,31 @@ body {
   flex-direction: column;
   align-items: center;
 }
+.form {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07),
+    0 10px 20px -2px rgba(0, 0, 0, 0.04);
+}
+.input {
+  flex: 1;
+}
+.btn {
+  color: var(--mainWhite);
+  cursor: pointer;
+  background-color: var(--primaryColor);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 9px -4px #3b71ca;
+  transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+  background-color: #386bc0;
+  box-shadow: 0 8px 9px -4px rgba(59, 113, 202, 0.3),
+    0 4px 18px 0 rgba(59, 113, 202, 0.2);
+}
+
 header {
   min-height: 20vh;
   display: flex;
@@ -51,18 +76,9 @@ header p {
   display: flex;
   padding-bottom: 0.8rem;
 }
-form {
+.todo-form {
   width: 80rem;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
   padding: 1.5rem;
-  border-radius: 0.7rem;
-  box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07),
-    0 10px 20px -2px rgba(0, 0, 0, 0.04);
-}
-form input {
-  flex: 1;
 }
 form input,
 form button {
@@ -73,19 +89,8 @@ form button {
   padding: 0.5rem;
 }
 .todo-button {
-  color: var(--mainWhite);
-  cursor: pointer;
   font-size: 1.3rem;
-  background-color: var(--primaryColor);
   padding: 1rem 2.4rem 0.8rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 9px -4px #3b71ca;
-  transition: all 0.2s ease-in-out;
-}
-.todo-button:hover {
-  background-color: #386bc0;
-  box-shadow: 0 8px 9px -4px rgba(59, 113, 202, 0.3),
-    0 4px 18px 0 rgba(59, 113, 202, 0.2);
 }
 hr {
   margin: 2.4rem 0;
@@ -194,12 +199,12 @@ span > i {
 }
 
 @media screen and (max-width: 800px) {
-  form,
+  .todo-form,
   .todo,
   hr {
     width: 48rem;
   }
-  form {
+  .todo-form {
     padding: 1.2rem;
   }
   header {
@@ -243,10 +248,10 @@ span > i {
   .form-container {
     justify-content: center;
   }
-  form {
+  .todo-form {
     padding: 0.8rem;
   }
-  form,
+  .todo-form,
   hr {
     width: 30rem;
   }
@@ -287,5 +292,92 @@ span > i {
   .todo span {
     font-size: 1.4rem;
     padding: 0.5rem;
+  }
+}
+
+/* modal */
+.backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 5;
+}
+.edit-modal {
+  width: 48rem;
+  height: 20rem;
+  padding: 1.8rem;
+  background-color: #eff1f2;
+  border: 1px solid #ccc;
+  box-shadow: 0 20px 120px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  transform: translateY(-100vh);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  z-index: 10;
+}
+.d-block {
+  display: block;
+}
+.show-modal {
+  opacity: 1;
+  transform: translateY(38vh);
+}
+.modal__header {
+  font-size: 1.8rem;
+  color: var(--primaryColor);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+.close-modal {
+  cursor: pointer;
+}
+.modal__body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.edit-form {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.edit-button {
+  font-size: 1.2rem;
+  padding: 0.8rem 1.5rem 0.6rem;
+}
+
+@media screen and (max-width: 520px) {
+  .edit-modal {
+    width: 90%;
+    height: 15rem;
+  }
+  .modal__header {
+    font-size: 1.5rem;
+  }
+  .edit-form {
+    padding: 0.7rem;
+  }
+  .edit-button {
+    font-size: 1.1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .edit-modal {
+    width: 100%;
   }
 }

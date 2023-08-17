@@ -19,15 +19,34 @@
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
   </head>
   <body dir="rtl">
+    <div class="backdrop"></div>
+    <div class="edit-modal">
+      <div class="modal__header">
+        <p class="modal__title">ویرایش تسک</p>
+        <span class="close-modal">
+          <i class="fas fa-close"></i>
+        </span>
+      </div>
+      <div class="modal__body">
+        <form class="form edit-form">
+          <input type="text" class="input edit-input" />
+          <button class="btn edit-button" type="submit">ویرایش</button>
+        </form>
+      </div>
+    </div>
     <header>
       <i class="fas fa-check-square"></i>
       <p>لیست کارهای روزانه</p>
     </header>
     <section class="container">
       <section class="form-container">
-        <form class="todo-form">
-          <input type="text" class="todo-input" placeholder="اضافه کن ..." />
-          <button class="todo-button" type="submit">ایجاد</button>
+        <form class="form todo-form">
+          <input
+            type="text"
+            class="input todo-input"
+            placeholder="اضافه کن ..."
+          />
+          <button class="btn todo-button" type="submit">ایجاد</button>
         </form>
       </section>
       <hr />

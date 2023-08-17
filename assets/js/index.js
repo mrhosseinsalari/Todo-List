@@ -10,8 +10,16 @@ const todoForm = document.querySelector(".todo-form");
 const todoList = document.querySelector(".todolist");
 const selectFilter = document.querySelector(".filter-todos");
 const dateInput = document.querySelector(".date-input");
+const backDrop = document.querySelector(".backdrop");
+const editModal = document.querySelector(".edit-modal");
+const closeModal = document.querySelector(".close-modal");
 
 // events
+document.addEventListener("DOMContentLoaded", (e) => {
+  const todos = getAllTodos();
+  createTodos(todos);
+});
+
 todoForm.addEventListener("submit", addNewTodo);
 
 selectFilter.addEventListener("change", (e) => {
@@ -24,10 +32,8 @@ dateInput.addEventListener("change", (e) => {
   filterTodos();
 });
 
-document.addEventListener("DOMContentLoaded", (e) => {
-  const todos = getAllTodos();
-  createTodos(todos);
-});
+backDrop.addEventListener("click", closeEditModal);
+closeModal.addEventListener("click", closeEditModal);
 
 // functions
 function createTodos(todos) {
@@ -60,6 +66,9 @@ function createTodos(todos) {
 
   const checkBtns = document.querySelectorAll(".todo__check");
   checkBtns.forEach((btn) => btn.addEventListener("click", checkTodo));
+
+  const editBtns = document.querySelectorAll(".todo__edit");
+  editBtns.forEach((btn) => btn.addEventListener("click", showEditModal));
 }
 
 function addNewTodo(e) {
@@ -140,6 +149,16 @@ function checkTodo(e) {
   todo.isCompleted = !todo.isCompleted;
   saveAllTodos(todos);
   filterTodos();
+}
+
+function showEditModal() {
+  backDrop.classList.add("d-block");
+  editModal.classList.add("show-modal");
+}
+
+function closeEditModal() {
+  backDrop.classList.remove("d-block");
+  editModal.classList.remove("show-modal");
 }
 
 // localStorage ==> web API
