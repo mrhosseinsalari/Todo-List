@@ -284,10 +284,11 @@ span > i {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.7rem;
+    padding: 0.7rem 0.7rem 5rem;
   }
   .todo {
     width: 100%;
+    min-width: 30rem;
     font-size: 1.6rem;
     padding: 0.4rem 1rem;
   }
