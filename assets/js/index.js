@@ -77,6 +77,7 @@ function createTodos(todos) {
 
 function addNewTodo(e) {
   e.preventDefault();
+  if (!todoInput.value) return;
 
   const newTodo = {
     id: Date.now(),
